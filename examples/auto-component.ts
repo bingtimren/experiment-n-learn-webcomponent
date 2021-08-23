@@ -6,14 +6,14 @@ export class AutoComponent extends HTMLElement {
         super();
 
         // Create a shadow root
-        this.attachShadow({ mode: 'open' }); // sets and returns 'this.shadowRoot'
+        const shadowRootInst = this.attachShadow({ mode: 'open' }); // sets and returns 'this.shadowRoot'
 
 
         // apply external styles to the shadow dom
         const linkElem = document.createElement('link');
         linkElem.setAttribute('rel', 'stylesheet');
         linkElem.setAttribute('href', '/examples/auto-component.css');
-        this.shadowRoot!.append(linkElem);
+        shadowRootInst.append(linkElem);
 
         // Create (nested) span elements
         const wrapper = document.createElement('span');
@@ -22,13 +22,26 @@ export class AutoComponent extends HTMLElement {
 
         // create custom attribute span element
         const attr = document.createElement("span");
+        attr.addEventListener("click", function (event) {
+            const customEvent = new CustomEvent(
+                "custom-event",
+                {
+                    bubbles: true,
+                    cancelable: false,
+                    composed: true, // triggers listeners outside the shadow root
+                    detail: {
+                        originalEvent: event
+                    }
+                });
+            shadowRootInst.dispatchEvent(customEvent);
+        })
         this.customAttrSpanText = attr.appendChild(document.createTextNode(""));
         attr.setAttribute("class", "auto-component red");
         wrapper.appendChild(document.createTextNode(" "));
         wrapper.appendChild(attr);
 
         // attach element to shadow root
-        this.shadowRoot!.append(wrapper);
+        shadowRootInst.append(wrapper);
         console.log("AutoComponent: constructor - done")
 
     };

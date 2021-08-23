@@ -11,9 +11,11 @@
             <li>with shadow DOM</li>
             <li>with global style applied by class</li>
             <li>with external style applied to shadow dom element</li>
+            <li>with lifecycle callback to react on custom attribute</li>
+            <li>with custom-event emitted from within shadow dom (click the custom attribute span and see console)</li>
         </ul>
         <p>Result: <auto-comp class="custom-element" custom-attr="a custom attribute"></auto-comp></p>
-        <input id="c-attr"><button id="c-attr-set">Set Custom Attribute</button>
+        <input is="custom-input" id="c-attr"><button id="c-attr-set">Set Custom Attribute</button>
 
         <hr>
 
