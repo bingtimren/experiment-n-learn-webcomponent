@@ -1,10 +1,12 @@
 import {AutoComponent} from "./examples/auto-component.js"
 import {ExpandingList} from "./examples/customized-build-in.js"
 import {CustomInput} from "./examples/custom-input.js"
+import {TemplateComponent} from "./examples/template-component.js"
 
 customElements.define('auto-comp', AutoComponent);
 customElements.define('expanding-list', ExpandingList, { extends: "ul" });
 customElements.define('custom-input', CustomInput, {extends: "input"});
+customElements.define('template-component', TemplateComponent);
 
 // set custom attr for example 1
 const button = document.querySelector("button#c-attr-set") as HTMLButtonElement;

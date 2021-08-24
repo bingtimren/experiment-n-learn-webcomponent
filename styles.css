@@ -1,4 +1,9 @@
 .custom-element {
     background-color: yellow;
 }
+
+.template-component {
+    display: block;
+    background-color: yellowgreen;
+    border: 1px solid black;
 }
